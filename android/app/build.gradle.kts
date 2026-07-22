@@ -1,25 +1,24 @@
 plugins {
     id("com.android.application")
+    // The Flutter Gradle Plugin must be applied after the Android plugin.
+    // It applies the Kotlin Android plugin itself (built-in Kotlin), so KGP
+    // must not be declared here.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
     namespace = "com.tareeqalmajd.studentapp"
-    compileSdk = 36
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_21.toString()
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     defaultConfig {
         applicationId = "com.tareeqalmajd.studentapp"
-        minSdk = 24
+        minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -28,6 +27,7 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("debug")
+
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -39,7 +39,9 @@ android {
 }
 
 kotlin {
-    jvmToolchain(21)
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+    }
 }
 
 flutter {
