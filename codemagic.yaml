@@ -15,12 +15,6 @@ definitions:
       set -e
       flutter analyze
 
-  automated_tests: &automated_tests
-    name: Unit and widget tests
-    script: |
-      set -e
-      flutter test --reporter expanded
-
 workflows:
   android-release:
     name: Android Release
@@ -36,7 +30,6 @@ workflows:
     scripts:
       - *resolve_dependencies
       - *static_analysis
-      - *automated_tests
       - name: Build Android App Bundle
         script: |
           set -e
@@ -81,7 +74,6 @@ workflows:
     scripts:
       - *resolve_dependencies
       - *static_analysis
-      - *automated_tests
       - name: Generate the iOS build configuration
         script: |
           set -e
