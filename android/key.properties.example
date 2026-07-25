@@ -1,0 +1,4 @@
+storeFile=/absolute/path/to/tareeqalmajd-release.jks
+storePassword=CHANGE_ME
+keyAlias=tareeqalmajd
+keyPassword=CHANGE_ME
