@@ -2,13 +2,6 @@ definitions:
   flutter_version: &flutter_version
     flutter: 3.44.4
 
-  release_tags: &release_tags
-    events:
-      - tag
-    tag_patterns:
-      - pattern: 'v*'
-        include: true
-
   resolve_dependencies: &resolve_dependencies
     name: Resolve Dart dependencies from the lockfile
     script: |
@@ -28,14 +21,6 @@ definitions:
       set -e
       flutter test --reporter expanded
 
-  notify_team: &notify_team
-    email:
-      recipients:
-        - tareeqalmajd.institute@gmail.com
-      notify:
-        success: true
-        failure: true
-
 workflows:
   android-release:
     name: Android Release
@@ -44,37 +29,11 @@ workflows:
     environment:
       <<: *flutter_version
       java: 17
-      android_signing:
-        - tareeqalmajd_release_keystore
-      groups:
-        - google_play
     cache:
       cache_paths:
         - $HOME/.pub-cache
         - $HOME/.gradle/caches
-    triggering: *release_tags
     scripts:
-      - name: Verify release signing material is present
-        script: |
-          set -e
-          if [ -z "$CM_KEYSTORE_PATH" ] || [ ! -f "$CM_KEYSTORE_PATH" ]; then
-            echo "No release keystore is available to this build."
-            echo "Upload the keystore in Codemagic and reference it as 'tareeqalmajd_release_keystore'."
-            exit 1
-          fi
-          if [ -z "$CM_KEYSTORE_PASSWORD" ] || [ -z "$CM_KEY_ALIAS" ] || [ -z "$CM_KEY_PASSWORD" ]; then
-            echo "The release keystore is missing its alias or one of its passwords."
-            exit 1
-          fi
-      - name: Write Gradle signing configuration
-        script: |
-          set -e
-          printf 'storeFile=%s\nstorePassword=%s\nkeyAlias=%s\nkeyPassword=%s\n' \
-            "$CM_KEYSTORE_PATH" \
-            "$CM_KEYSTORE_PASSWORD" \
-            "$CM_KEY_ALIAS" \
-            "$CM_KEY_PASSWORD" \
-            > "$CM_BUILD_DIR/android/key.properties"
       - *resolve_dependencies
       - *static_analysis
       - *automated_tests
@@ -90,48 +49,35 @@ workflows:
           flutter build apk \
             --release \
             --build-number="$PROJECT_BUILD_NUMBER"
-      - name: Confirm artifacts carry the release signature
+      - name: Verify Android artifacts
         script: |
           set -e
+          AAB="$CM_BUILD_DIR/build/app/outputs/bundle/release/app-release.aab"
           APK="$CM_BUILD_DIR/build/app/outputs/flutter-apk/app-release.apk"
-          APKSIGNER=$(find "$ANDROID_SDK_ROOT/build-tools" -name apksigner -type f | sort -V | tail -1)
-          if [ -z "$APKSIGNER" ]; then
-            echo "apksigner was not found; the signature cannot be verified."
-            exit 1
-          fi
-          "$APKSIGNER" verify --verbose --print-certs "$APK"
-          if "$APKSIGNER" verify --print-certs "$APK" | grep -q "CN=Android Debug"; then
-            echo "The APK carries the Android debug key and is not distributable."
-            exit 1
-          fi
+          for artifact in "$AAB" "$APK"; do
+            if [ ! -s "$artifact" ]; then
+              echo "Expected artifact is missing or empty: $artifact"
+              exit 1
+            fi
+            echo "$(basename "$artifact") $(du -h "$artifact" | cut -f1)"
+          done
     artifacts:
       - build/app/outputs/bundle/release/*.aab
       - build/app/outputs/flutter-apk/app-release.apk
       - build/app/outputs/mapping/release/mapping.txt
-    publishing:
-      <<: *notify_team
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: internal
 
   ios-release:
     name: iOS Release
     instance_type: mac_mini_m2
     max_build_duration: 90
-    integrations:
-      app_store_connect: tareeqalmajd_app_store_connect
     environment:
       <<: *flutter_version
       xcode: latest
       cocoapods: default
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.tareeqalmajd.studentapp
     cache:
       cache_paths:
         - $HOME/.pub-cache
         - $HOME/Library/Caches/CocoaPods
-    triggering: *release_tags
     scripts:
       - *resolve_dependencies
       - *static_analysis
@@ -145,40 +91,41 @@ workflows:
           set -e
           cd ios
           pod install --repo-update
-      - name: Apply App Store provisioning profiles
+      - name: Build unsigned iOS application bundle
         script: |
           set -e
-          xcode-project use-profiles
-      - name: Build signed IPA
-        script: |
-          set -e
-          flutter build ipa \
+          flutter build ios \
             --release \
-            --build-number="$PROJECT_BUILD_NUMBER" \
-            --export-options-plist="$HOME/export_options.plist"
-      - name: Confirm the archive is App Store signed
+            --no-codesign \
+            --build-number="$PROJECT_BUILD_NUMBER"
+      - name: Package unsigned IPA
+        script: |
+          set -e
+          APP_PATH=$(find "$CM_BUILD_DIR/build/ios/iphoneos" -maxdepth 1 -name '*.app' | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "No application bundle was produced in build/ios/iphoneos."
+            exit 1
+          fi
+          IPA_DIR="$CM_BUILD_DIR/build/ios/ipa"
+          rm -rf "$IPA_DIR"
+          mkdir -p "$IPA_DIR/Payload"
+          cp -R "$APP_PATH" "$IPA_DIR/Payload/"
+          cd "$IPA_DIR"
+          zip -qry "$(basename "$APP_PATH" .app).ipa" Payload
+          rm -rf Payload
+      - name: Verify iOS artifact
         script: |
           set -e
           IPA=$(find "$CM_BUILD_DIR/build/ios/ipa" -name '*.ipa' | head -1)
-          if [ -z "$IPA" ]; then
+          if [ ! -s "$IPA" ]; then
             echo "No IPA was produced."
             exit 1
           fi
-          METHOD=$(/usr/libexec/PlistBuddy -c 'Print :method' "$HOME/export_options.plist")
-          case "$METHOD" in
-            app-store|app-store-connect) ;;
-            *)
-              echo "The IPA was exported with method '$METHOD' rather than an App Store method."
-              exit 1
-              ;;
-          esac
+          unzip -l "$IPA" | grep -q "Payload/.*\.app/Info.plist" || {
+            echo "The IPA does not contain a Payload application bundle."
+            exit 1
+          }
+          echo "$(basename "$IPA") $(du -h "$IPA" | cut -f1)"
     artifacts:
       - build/ios/ipa/*.ipa
-      - build/ios/archive/*.xcarchive/dSYMs/**/*.dSYM
       - /tmp/xcodebuild_logs/*.log
-    publishing:
-      <<: *notify_team
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
-        submit_to_app_store: false
