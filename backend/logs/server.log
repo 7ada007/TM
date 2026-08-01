@@ -1,0 +1,161 @@
+04:28:34 WARN  JWT_SECRET not set — using an insecure development default. Set JWT_SECRET before deploying.
+04:28:34 INFO  SQLite database ready at C:/Users/sadmf/AppData/Local/Temp/e2e/test.db (WAL mode, foreign keys enforced)
+04:28:34 WARN  Transcoder: ffmpeg/ffprobe not found — lectures play progressively, no adaptive HLS
+04:28:35 INFO  Seeded administrator account: جعفر منصور حمد (Jaffar)
+04:28:35 INFO  Seeded administrator account: حيدر منصور حمد (Hayder)
+04:28:35 INFO  Starting secure server on port 18443 (env=development, db=C:/Users/sadmf/AppData/Local/Temp/e2e/test.db)
+04:28:40 GET    200    506µs  /health                                    ::1
+04:28:40 GET    200      0µs  /health                                    ::1
+04:29:29 POST   200  206.1ms  /api/auth/login                            ::1
+04:29:29 POST   201  195.3ms  /api/users                                 ::1
+04:29:29 POST   201    1.5ms  /api/lectures                              ::1
+04:29:29 POST   200  203.1ms  /api/auth/login                            ::1
+04:29:30 GET    200    601µs  /api/monitoring/progress                   ::1
+04:29:31 GET    200      0µs  /api/monitoring/progress                   ::1
+04:29:31 GET    403      0µs  /api/monitoring/progress                   ::1
+04:29:31 GET    401      0µs  /api/realtime                              ::1
+04:29:31 GET    200   1.408s  /api/realtime                              ::1
+04:29:31 GET    200   1.406s  /api/realtime                              ::1
+04:31:19 GET    200      0µs  /health                                    ::1
+05:39:37 WARN  JWT_SECRET not set — using an insecure development default. Set JWT_SECRET before deploying.
+05:39:38 INFO  SQLite database ready at C:/Users/sadmf/AppData/Local/Temp/e2e2/test.db (WAL mode, foreign keys enforced)
+05:39:38 WARN  Transcoder: ffmpeg/ffprobe not found — lectures play progressively, no adaptive HLS
+05:39:38 INFO  Seeded administrator account: جعفر منصور حمد (Jaffar)
+05:39:38 INFO  Seeded administrator account: حيدر منصور حمد (Hayder)
+05:39:38 INFO  Starting secure server on port 18443 (env=development, db=C:/Users/sadmf/AppData/Local/Temp/e2e2/test.db)
+05:39:40 GET    200    2.7ms  /health                                    ::1
+05:40:27 POST   200  213.0ms  /api/auth/login                            127.0.0.1
+05:40:27 POST   201  221.0ms  /api/users                                 127.0.0.1
+05:40:27 POST   201      0µs  /api/lectures                              127.0.0.1
+05:40:27 POST   200  213.6ms  /api/auth/login                            127.0.0.1
+05:40:27 WARN  realtime: read error for user 57c174f5-ea16-41d4-9a1f-f3336b557449: websocket: close 1005 (no status)
+05:40:27 GET    200   50.9ms  /api/realtime                              127.0.0.1
+05:40:28 GET    200    536µs  /api/monitoring/progress                   127.0.0.1
+05:40:28 GET    403      0µs  /api/monitoring/progress                   127.0.0.1
+05:40:28 GET    200  651.9ms  /api/realtime                              127.0.0.1
+08:23:44 WARN  JWT_SECRET not set — using an insecure development default. Set JWT_SECRET before deploying.
+08:23:44 INFO  SQLite database ready at C:/Users/sadmf/AppData/Local/Temp/e2e3/test.db (WAL mode, foreign keys enforced)
+08:23:44 WARN  Transcoder: ffmpeg/ffprobe not found — lectures play progressively, no adaptive HLS
+08:23:44 INFO  Seeded administrator account: جعفر منصور حمد (Jaffar)
+08:23:44 INFO  Seeded administrator account: حيدر منصور حمد (Hayder)
+08:23:44 INFO  Starting secure server on port 18443 (env=development, db=C:/Users/sadmf/AppData/Local/Temp/e2e3/test.db)
+08:23:44 GET    200      0µs  /health                                    ::1
+08:24:39 POST   200  197.6ms  /api/auth/login                            127.0.0.1
+08:24:39 POST   201  198.7ms  /api/users                                 127.0.0.1
+08:24:39 POST   201      0µs  /api/lectures                              127.0.0.1
+08:24:39 POST   200  191.4ms  /api/auth/login                            127.0.0.1
+08:24:39 WARN  realtime: read error for user efb1c4ed-62e8-4dea-a920-ed808408385c: websocket: close 1005 (no status)
+08:24:39 GET    200   11.8ms  /api/realtime                              127.0.0.1
+08:24:40 GET    200    507µs  /api/monitoring/progress                   127.0.0.1
+08:24:40 GET    200      0µs  /api/monitoring/progress                   127.0.0.1
+08:24:40 GET    200  961.6ms  /api/realtime                              127.0.0.1
+08:24:40 GET    200  922.3ms  /api/realtime                              127.0.0.1
+08:58:34 WARN  JWT_SECRET not set — using an insecure development default. Set JWT_SECRET before deploying.
+08:58:34 INFO  SQLite database ready at C:/Users/sadmf/AppData/Local/Temp/e2e4/test.db (WAL mode, foreign keys enforced)
+08:58:34 WARN  Transcoder: ffmpeg/ffprobe not found — lectures play progressively, no adaptive HLS
+08:58:35 INFO  Seeded administrator account: جعفر منصور حمد (Jaffar)
+08:58:35 INFO  Seeded administrator account: حيدر منصور حمد (Hayder)
+08:58:35 INFO  Starting secure server on port 18443 (env=development, db=C:/Users/sadmf/AppData/Local/Temp/e2e4/test.db)
+08:58:35 GET    200    504µs  /health                                    ::1
+08:59:36 POST   200  197.5ms  /api/auth/login                            127.0.0.1
+08:59:37 POST   201  197.3ms  /api/users                                 127.0.0.1
+08:59:37 POST   201      0µs  /api/lectures                              127.0.0.1
+08:59:37 POST   200  195.4ms  /api/auth/login                            127.0.0.1
+08:59:37 GET    200    528µs  /api/monitoring/progress                   127.0.0.1
+08:59:37 GET    200      0µs  /api/lectures                              127.0.0.1
+08:59:37 GET    200      0µs  /api/attendance                            127.0.0.1
+08:59:37 GET    200      0µs  /api/users                                 127.0.0.1
+08:59:37 GET    200  637.9ms  /api/realtime                              127.0.0.1
+08:59:37 GET    200  659.9ms  /api/realtime                              127.0.0.1
+09:35:45 WARN  JWT_SECRET not set — using an insecure development default. Set JWT_SECRET before deploying.
+09:35:46 INFO  SQLite database ready at C:/Users/sadmf/AppData/Local/Temp/audit/test.db (WAL mode, foreign keys enforced)
+09:35:46 WARN  Transcoder: ffmpeg/ffprobe not found — lectures play progressively, no adaptive HLS
+09:35:46 INFO  Seeded administrator account: جعفر منصور حمد (Jaffar)
+09:35:46 INFO  Seeded administrator account: حيدر منصور حمد (Hayder)
+09:35:46 INFO  Starting secure server on port 18443 (env=development, db=C:/Users/sadmf/AppData/Local/Temp/audit/test.db)
+09:35:48 GET    200      0µs  /health                                    ::1
+09:35:48 GET    200      0µs  /health                                    ::1
+09:36:42 POST   200  212.5ms  /api/auth/login                            127.0.0.1
+09:36:42 POST   401  201.3ms  /api/auth/login                            127.0.0.1
+09:36:42 GET    401    1.5ms  /api/users                                 127.0.0.1
+09:36:42 GET    200      0µs  /api/auth/me                               127.0.0.1
+09:36:42 GET    200    504µs  /api/users                                 127.0.0.1
+09:36:42 GET    200    504µs  /api/lectures                              127.0.0.1
+09:37:11 POST   200  212.9ms  /api/auth/login                            127.0.0.1
+09:37:11 POST   401  209.8ms  /api/auth/login                            127.0.0.1
+09:37:11 GET    401      0µs  /api/users                                 127.0.0.1
+09:37:11 GET    200      0µs  /api/auth/me                               127.0.0.1
+09:37:11 GET    200      0µs  /api/users                                 127.0.0.1
+09:37:11 GET    200      0µs  /api/lectures                              127.0.0.1
+09:37:11 GET    200    999µs  /api/attendance                            127.0.0.1
+09:37:11 GET    200    1.1ms  /api/comments                              127.0.0.1
+09:37:11 GET    200      0µs  /api/ratings                               127.0.0.1
+09:37:11 GET    200    550µs  /api/community/posts                       127.0.0.1
+09:37:11 GET    200      0µs  /api/progress/me                           127.0.0.1
+09:37:11 GET    200      0µs  /api/monitoring/progress                   127.0.0.1
+09:37:11 POST   201  201.0ms  /api/users                                 127.0.0.1
+09:37:11 POST   201  202.7ms  /api/users                                 127.0.0.1
+09:37:12 POST   200  206.5ms  /api/auth/login                            127.0.0.1
+09:37:12 POST   200  196.8ms  /api/auth/login                            127.0.0.1
+09:37:12 GET    403      0µs  /api/monitoring/progress                   127.0.0.1
+09:37:12 POST   403      0µs  /api/lectures                              127.0.0.1
+09:37:12 GET    200    1.0ms  /api/auth/me                               127.0.0.1
+09:37:12 PUT    200    538µs  /api/users/763e1d79-7235-4f95-956e-edb131ff2d89 127.0.0.1
+09:37:12 GET    200      0µs  /api/auth/me                               127.0.0.1
+09:37:12 GET    401      0µs  /api/realtime                              127.0.0.1
+09:37:12 POST   201    715µs  /api/lectures                              127.0.0.1
+09:37:12 GET    200      0µs  /api/monitoring/progress                   127.0.0.1
+09:37:12 WARN  realtime: read error for user 763e1d79-7235-4f95-956e-edb131ff2d89: websocket: close 1005 (no status)
+09:37:12 GET    200  619.9ms  /api/realtime                              127.0.0.1
+09:37:12 GET    200  651.3ms  /api/realtime                              127.0.0.1
+11:21:23 INFO  SQLite database ready at C:/Users/sadmf/AppData/Local/Temp/claude/D--Tareeqmajdapp-Android1/08adf534-3daf-4ea0-9d9d-ea7b17f2a08a/scratchpad/e2e.db (WAL mode, foreign keys enforced)
+11:21:23 WARN  Transcoder: ffmpeg/ffprobe not found — lectures play progressively, no adaptive HLS
+11:21:23 INFO  Gemini assistant enabled (model=gemini-3.6-flash)
+11:21:24 INFO  Seeded administrator account: جعفر منصور حمد (Jaffar)
+11:21:24 INFO  Seeded administrator account: حيدر منصور حمد (Hayder)
+11:21:24 INFO  Starting secure server on port 9443 (env=development, db=C:/Users/sadmf/AppData/Local/Temp/claude/D--Tareeqmajdapp-Android1/08adf534-3daf-4ea0-9d9d-ea7b17f2a08a/scratchpad/e2e.db)
+11:21:38 POST   200  206.4ms  /api/auth/login                            ::1
+11:21:38 GET    200      0µs  /api/assistant/status                      ::1
+11:21:41 POST   200   2.678s  /api/assistant/chat                        ::1
+11:21:55 POST   200  199.7ms  /api/auth/login                            ::1
+11:21:58 POST   200   2.729s  /api/assistant/chat                        ::1
+11:22:09 POST   200  200.7ms  /api/auth/login                            ::1
+11:22:09 POST   401      0µs  /api/assistant/chat                        ::1
+11:22:09 POST   400    448µs  /api/assistant/chat                        ::1
+11:22:09 POST   400      0µs  /api/assistant/chat                        ::1
+11:22:09 GET    401    519µs  /api/assistant/status                      ::1
+12:10:42 INFO  ALLOWED_ORIGINS not set — browser cross-origin requests are refused (native app traffic is unaffected)
+12:10:42 INFO  SQLite database ready at C:/Users/sadmf/AppData/Local/Temp/claude/D--Tareeqmajdapp-Android1/08adf534-3daf-4ea0-9d9d-ea7b17f2a08a/scratchpad/sec.db (WAL mode, foreign keys enforced)
+12:10:42 WARN  Transcoder: ffmpeg/ffprobe not found — lectures play progressively, no adaptive HLS
+12:10:42 INFO  Gemini assistant enabled (model=gemini-3.6-flash)
+12:10:43 INFO  Seeded administrator account: جعفر منصور حمد (Jaffar)
+12:10:43 INFO  Seeded administrator account: حيدر منصور حمد (Hayder)
+12:10:43 INFO  Starting secure server on port 9445 (env=development, db=C:/Users/sadmf/AppData/Local/Temp/claude/D--Tareeqmajdapp-Android1/08adf534-3daf-4ea0-9d9d-ea7b17f2a08a/scratchpad/sec.db)
+12:11:05 INFO  Login succeeded for "Jaffar" (role=admin) from ::1
+12:11:05 POST   200  205.0ms  /api/auth/login                            ::1
+12:11:05 GET    200      0µs  /health                                    ::1
+12:11:05 GET    200      0µs  /api/auth/me                               ::1
+12:11:05 OPTIONS 403      0µs  /api/auth/login                            ::1
+12:11:20 WARN  Failed login for "Hayder" from ::1
+12:11:20 POST   401  204.1ms  /api/auth/login                            ::1
+12:11:20 WARN  Failed login for "Hayder" from ::1
+12:11:20 POST   401  201.4ms  /api/auth/login                            ::1
+12:11:20 WARN  Failed login for "Hayder" from ::1
+12:11:20 POST   401  197.3ms  /api/auth/login                            ::1
+12:11:20 WARN  Failed login for "Hayder" from ::1
+12:11:20 POST   401  196.4ms  /api/auth/login                            ::1
+12:11:21 WARN  Failed login for "Hayder" from ::1
+12:11:21 POST   401  195.8ms  /api/auth/login                            ::1
+12:11:21 WARN  Failed login for "Hayder" from ::1
+12:11:21 POST   401  197.9ms  /api/auth/login                            ::1
+12:11:21 WARN  Failed login for "Hayder" from ::1
+12:11:21 POST   401  200.1ms  /api/auth/login                            ::1
+12:11:21 WARN  Account "Hayder" locked for 15m0s after repeated failed logins (last attempt from ::1)
+12:11:21 POST   401  205.0ms  /api/auth/login                            ::1
+12:11:21 WARN  Login blocked for locked account "Hayder" from ::1
+12:11:21 POST   429    400µs  /api/auth/login                            ::1
+12:11:22 INFO  Login succeeded for "Jaffar" (role=admin) from ::1
+12:11:22 POST   200  196.4ms  /api/auth/login                            ::1
+12:11:35 INFO  Login succeeded for "Jaffar" (role=admin) from ::1
+12:11:35 POST   200  238.1ms  /api/auth/login                            ::1
+12:11:37 POST   200   2.095s  /api/assistant/chat                        ::1
